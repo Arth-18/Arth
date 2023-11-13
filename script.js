@@ -22,7 +22,7 @@ const goNext = () => {
 };
 
 const slideImage = () => {
-    slides.forEach((slide) => {
+    slides.forEach((slide, index) => {
         slide.style.transform = `translateX(${(index - counter) * 100}%)`;
     });
 };
