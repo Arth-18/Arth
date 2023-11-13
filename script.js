@@ -1,36 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.querySelector('.slider');
-    const images = document.querySelectorAll('.slider img');
-    const surpriseButton = document.getElementById('surpriseButton');
-    const fireworks = document.getElementById('fireworks');
+const slides = document.querySelectorAll(".slide");
+let counter = 0;
 
-    let currentImage = 0;
-
-    function showImage(index) {
-        images[currentImage].style.opacity = 0;
-        images[index].style.opacity = 1;
-        currentImage = index;
-    }
-
-    function slide() {
-        const nextImage = (currentImage + 1) % images.length;
-        showImage(nextImage);
-    }
-
-    setInterval(slide, 5000); // Change image every 5 seconds
-
-    surpriseButton.addEventListener('click', function () {
-        const message = document.getElementById('message');
-        message.innerText = "Surprise! 🎉 Happy New Year!";
-        showImage(0); // Show the first image
-
-        // Trigger fireworks animation
-        fireworks.style.display = 'block';
-        fireworks.style.animation = 'fireworks 5s ease-in-out forwards';
-
-        setTimeout(function () {
-            message.innerText = "Even though I'm far away, my warm wishes are with you.";
-            fireworks.style.display = 'none';
-        }, 7000); // Reset the message and hide fireworks after 7 seconds
-    });
+slides.forEach((slide, index) => {
+    slide.style.left = `${index * 100}%`;
 });
+
+const goPrev = () => {
+    counter--;
+    if (counter < 0) {
+        counter = slides.length - 1; // Wrap around to the last image
+    }
+    slideImage();
+};
+
+const goNext = () => {
+    counter++;
+    if (counter >= slides.length) {
+        counter = 0; // Wrap around to the first image
+    }
+    slideImage();
+};
+
+const slideImage = () => {
+    slides.forEach((slide) => {
+        slide.style.transform = `translateX(-${counter * 100}%)`;
+    });
+};
