@@ -7,17 +7,17 @@ slides.forEach((slide, index) => {
 
 const goPrev = () => {
     counter--;
-    if (counter < 0) {
+    /*if (counter < 0) {
         counter = slides.length - 1;
-    }
+    }*/
     slideImage();
 };
 
 const goNext = () => {
     counter++;
-    if (counter >= slides.length) {
+    /*if (counter >= slides.length) {
         counter = 0;
-    }
+    }*/
     slideImage();
 };
 
