@@ -1,28 +1,21 @@
-const slides = document.querySelectorAll(".slide");
-let counter = 0;
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
 
-slides.forEach((slide, index) => {
-    slide.style.left = `${index * 100}%`;
-});
-
-const goPrev = () => {
-    counter--;
-    if (counter < 0) {
-        counter = slides.length - 1; // Wrap around to the last image
-    }
-    slideImage();
-};
-
-const goNext = () => {
-    counter++;
-    if (counter >= slides.length) {
-        counter = 0; // Wrap around to the first image
-    }
-    slideImage();
-};
-
-const slideImage = () => {
+function showSlide(n) {
     slides.forEach((slide) => {
-        slide.style.transform = `translateX(-${counter * 100}%)`;
+        slide.style.display = 'none';
     });
-};
+
+    slides[n].style.display = 'block';
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+// Initially, display the first slide
+showSlide(currentSlide);
+
+// Automatically move to the next slide every 3 seconds
+setInterval(nextSlide, 3000);
