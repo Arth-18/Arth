@@ -8,7 +8,7 @@ slides.forEach((slide, index) => {
 const goPrev = () => {
     counter--;
     if (counter < 0) {
-        counter = slides.length - 1; // Wrap around to the last image
+        counter = slides.length - 1;
     }
     slideImage();
 };
@@ -16,13 +16,13 @@ const goPrev = () => {
 const goNext = () => {
     counter++;
     if (counter >= slides.length) {
-        counter = 0; // Wrap around to the first image
+        counter = 0;
     }
     slideImage();
 };
 
 const slideImage = () => {
-    slides.forEach((slide) => {
-        slide.style.transform = `translateX(-${counter * 100}%)`;
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${(index - counter) * 100}%)`;
     });
 };
